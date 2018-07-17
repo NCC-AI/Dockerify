@@ -25,7 +25,7 @@ RUN pip install torchvision
 
 # create user
 
-RUN groupadd hiroki -g 100 && useradd -m hiroki -u 100 -g 100
+RUN groupadd hiroki -g 1000 && useradd -m hiroki -u 1000 -g 1000
 RUN usermod -s /bin/bash hiroki
 RUN echo "hiroki:nccy" | chpasswd
 
@@ -37,11 +37,11 @@ RUN sudo -u hiroki mkdir -p .ssh
 RUN sudo -u hiroki chmod 700 .ssh
 RUN sudo -u hiroki touch .ssh/authorized_keys
 RUN sudo -u hiroki chmod 600 .ssh/authorized_keys
-RUN sudo -u hiroki echo "dddddddddddddddddddddddd" > .ssh/authorized_keys
+RUN sudo -u hiroki echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnP2lzJsO2QSWic58lB6ha6ShqoKXaSUS0lG1uQ4HCtY7VR5DLCF7IEDJb0t8nnA6NhHhlowKunCwoASYWvqvjmrjkMii6+nN3U9wfXQhCdAJV2NB9fHUxRFYKOzsTbO4K8YhlWr6EWFbkWI4vzqpyez625veTxBujVgY3paXYzUqRBjmdGMaH/15skHRxYKrbD/VjumIkF2RG+suJANogvsUko3am98+8iEiD0vizOoraKZgSw4ZTEZTd53gofh62WWcEBtu8UlcmP8IoFkFze3IcPwrBEn1ETum24lkdOOOAj1jAi7uKv3xyTp8HMiY32E1aeJ8kHqrNX1iI+VD3 1234defgsigeru@gmail.com" > .ssh/authorized_keys
 RUN sudo -u hiroki echo "export PYENV_ROOT=/usr/local/bin/.pyenv" >> .bashrc
 RUN sudo -u hiroki echo "export PATH=$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH" >> .bashrc
 
-RUN groupadd yoshiki -g 101 && useradd -m yoshiki -u 101 -g 101
+RUN groupadd yoshiki -g 1001 && useradd -m yoshiki -u 1001 -g 1001
 RUN usermod -s /bin/bash yoshiki
 RUN echo "yoshiki:nccy" | chpasswd
 
@@ -57,7 +57,7 @@ RUN sudo -u yoshiki echo "jjjjjjjjjjjjjjjjjjjjjjjjjj" > .ssh/authorized_keys
 RUN sudo -u yoshiki echo "export PYENV_ROOT=/usr/local/bin/.pyenv" >> .bashrc
 RUN sudo -u yoshiki echo "export PATH=$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH" >> .bashrc
 
-RUN groupadd takano -g 102 && useradd -m takano -u 102 -g 102
+RUN groupadd takano -g 1002 && useradd -m takano -u 1002 -g 1002
 RUN usermod -s /bin/bash takano
 RUN echo "takano:nccy" | chpasswd
 
@@ -77,6 +77,7 @@ WORKDIR /root
 
 # ssh server
 RUN apt-get -y install openssh-server
+RUN mkdir /var/run/sshd
 RUN sed -i -e "s/\#PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
 EXPOSE 22
 
@@ -84,4 +85,4 @@ EXPOSE 22
 RUN apt-get autoremove && apt-get clean
 
 # default shell
-# CMD ["/bin/bash", "--login"]
+CMD /usr/sbin/sshd -D && tail -f /dev/null

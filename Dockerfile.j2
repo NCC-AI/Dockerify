@@ -47,6 +47,7 @@ WORKDIR /root
 
 # ssh server
 RUN apt-get -y install openssh-server
+RUN mkdir /var/run/sshd
 RUN sed -i -e "s/\#PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
 EXPOSE 22
 
@@ -54,4 +55,4 @@ EXPOSE 22
 RUN apt-get autoremove && apt-get clean
 
 # default shell
-# CMD ["/bin/bash", "--login"]
+CMD /usr/sbin/sshd -D && tail -f /dev/null
