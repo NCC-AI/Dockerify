@@ -1,11 +1,10 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime
+FROM nvidia/cuda:8.0-cudnn6-runtime
 
 RUN echo "root:root" | chpasswd
 RUN apt-get update  --fix-missing
 RUN apt-get -y install sudo curl git vim zsh unzip imagemagick bzip2 language-pack-ja
 RUN apt-get -y install htop xsel
 RUN apt-get -y install libglib2.0-0 libsm6 libxrender1 libxext6 libgl1-mesa-glx
-RUN apt-get -y install nvidia-cuda-toolkit
 
 # python env
 WORKDIR /usr/local/bin
@@ -19,7 +18,7 @@ RUN pyenv global anaconda3-5.0.1
 RUN pyenv rehash
 
 RUN pip install --upgrade pip
-RUN pip install opencv-python tqdm h5py keras tensorflow-gpu kaggle-cli gym
+RUN pip install opencv-python tqdm h5py keras==2.1.0 tensorflow-gpu==1.4.0 kaggle-cli gym
 RUN pip install chainer
 RUN pip install http://download.pytorch.org/whl/cu90/torch-0.4.0-cp36-cp36m-linux_x86_64.whl
 RUN pip install torchvision
