@@ -38,7 +38,7 @@ RUN sudo -u hiroki mkdir -p .ssh
 RUN sudo -u hiroki chmod 700 .ssh
 RUN sudo -u hiroki touch .ssh/authorized_keys
 RUN sudo -u hiroki chmod 600 .ssh/authorized_keys
-RUN sudo -u hiroki echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnP2lzJsO2QSWic58lB6ha6ShqoKXaSUS0lG1uQ4HCtY7VR5DLCF7IEDJb0t8nnA6NhHhlowKunCwoASYWvqvjmrjkMii6+nN3U9wfXQhCdAJV2NB9fHUxRFYKOzsTbO4K8YhlWr6EWFbkWI4vzqpyez625veTxBujVgY3paXYzUqRBjmdGMaH/15skHRxYKrbD/VjumIkF2RG+suJANogvsUko3am98+8iEiD0vizOoraKZgSw4ZTEZTd53gofh62WWcEBtu8UlcmP8IoFkFze3IcPwrBEn1ETum24lkdOOOAj1jAi7uKv3xyTp8HMiY32E1aeJ8kHqrNX1iI+VD3 1234defgsigeru@gmail.com" > .ssh/authorized_keys
+RUN sudo -u hiroki echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUXurqEGm+nx0LDdxT+ABDWt2uNyrg5KDMq8dGeG9A60IbPrAv4ljSSQB7trn8AlOj9efWD806+UBLUFPUWrvkYQB++Lp/3M7v1XLEwTWfxv2YojfkyvlxLw5GkPnKetI+g9VxqJ+fcn+a6uwxJ0tLLY3XU+qOdIC35vKl/lI7/NAtzgOr2bipsCI4eYfp2aEmY5pGMhzKj/2ZMug4MXi0E9Z/vM0NrzQlbQlkOEnhkTM2Zl2pJ8II9ZBpdM2KWv8ce1J1meyPf3LLdqZiOTnryuwGNQ7vl8RiA/TTALFdrZ+arFDrxNjETmio3P1r9S/GGebaiT6JSXdY917tfn5x 1234defgsigeru@gmail.com" > .ssh/authorized_keys
 RUN sudo -u hiroki echo "export PYENV_ROOT=/usr/local/bin/.pyenv" >> .bashrc
 RUN sudo -u hiroki echo "export PATH=$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH" >> .bashrc
 
