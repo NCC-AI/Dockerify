@@ -10,14 +10,14 @@ Macから公開鍵SSHで
 ```bash
 ($ mkdir ~/.ssh なければ作る)
 $ cd ~/.ssh
-$ ssh-keygen -t rsa -f key_name -C test@example.com
+$ ssh-keygen -t rsa -f KeyName -C test@example.com
 e.g. $ ssh-keygen -t rsa -f my_key -C 1234defgsigeru@gmail.com
 ```
 
 DLBに公開鍵を送る
 ```bash
-$ chmod 600 key_name
-$ scp -P 3030 key_name.pub hiroki@121.2.124.147:~/.ssh/authorized_keys
+$ chmod 600 my_key
+$ scp -P 3030 my_key.pub hiroki@121.2.124.147:~/.ssh/authorized_keys
 $ vim ~/.ssh/config
 ```
 
@@ -27,7 +27,7 @@ Host _ncc1-dl
   User hiroki
   Port 3030
   Hostname 121.2.124.147
-  IdentityFile ~/.ssh/mykey
+  IdentityFile ~/.ssh/my_key
   TCPKeepAlive yes
   IdentitiesOnly yes
 
@@ -35,7 +35,7 @@ Host ncc1-docker
   User hiroki
   Port 8567
   Hostname 127.0.0.1
-  IdentityFile ~/.ssh/mykey
+  IdentityFile ~/.ssh/my_key
   TCPKeepAlive yes
   IdentitiesOnly yes
   ProxyCommand ssh -W %h:%p _ncc1-dl
