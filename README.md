@@ -1,33 +1,21 @@
 # Dockerify
 Build Docker Container on Deep Learning Box 
 
-## 環境構築手順
-- [ ] Dockerfileの自分のアカウントのauthorized_keysをセットする
-
+## Mac側の設定(DLB, Dockerに簡単接続)  
+公開鍵、秘密鍵の作成
 ```
-$ sh install-nvidia-docker.sh
-$ sh docker_start.sh
-```
-
-## よく使うコマンド
-
-docker から抜ける  
-`$ exit`  
-
-docker に入る
-```
-$ sudo nvidia-docker exec -it ncc1-docker /bin/bash
+$ ssh-keygen -t rsa -f key_name -C test@example.com
+e.g.) $ ssh-keygen -t rsa -f my_key -C 1234defgsigeru@gmail.com
 ```
 
-## Mac側の設定(DLB, Dockerに簡単接続)
-
+DLBに公開鍵を送る
 ```
-$ ssh-keygen -t rsa -f my_key -C test@example.com
-$ chmod 600 my_key
-$ scp -P 3030 my_key.pub hiroki@121.2.124.147:~/.ssh
+$ chmod 600 key_name
+$ scp -P 3030 key_name.pub hiroki@121.2.124.147:~/.ssh/authorized_keys
 $ vim ~/.ssh/config
 ```
 
+2段階SSHのための設定
 ```bash ~/.ssh/config
 Host _ncc1-dl
   User hiroki
@@ -48,13 +36,31 @@ Host ncc1-docker
   StrictHostKeyChecking no
 ```
 
-- NCCのDLB1(外部接続してる方)に接続  
+NCCのDLB1(外部接続してる方)に接続  
 `ssh _ncc1-dl`
-
-- DLB1のDockerに接続  
-`ssh ncc1-docker`
 
 sshのpassを登録  
 `ssh-add ~/.ssh/id_rsa`
 再起動しても消えないように登録  
 `ssh-add -K ~/.ssh/id_rsa`
+
+## Docker環境構築手順
+- [ ] Dockerfileの自分のアカウントのauthorized_keysをセットする
+
+```
+$ sh install-nvidia-docker.sh
+$ sh docker_start.sh
+```
+
+## DLB内でよく使うコマンド
+
+docker から抜ける  
+`$ exit`  
+
+docker に入る
+```
+$ sudo nvidia-docker exec -it ncc1-docker /bin/bash
+```
+
+MacからDLB1のDockerに接続  
+`ssh ncc1-docker`
