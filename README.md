@@ -4,6 +4,8 @@ Build Docker Container on Deep Learning Box
 ## Mac側の設定(DLB, Dockerに簡単接続)  
 公開鍵、秘密鍵の作成
 ```bash
+($ mkdir ~/.ssh なければ作る)
+$ cd ~/.ssh
 $ ssh-keygen -t rsa -f key_name -C test@example.com
 e.g.) $ ssh-keygen -t rsa -f my_key -C 1234defgsigeru@gmail.com
 ```
