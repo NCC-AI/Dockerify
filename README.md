@@ -1,5 +1,9 @@
 # Dockerify
-Build Docker Container on Deep Learning Box 
+_Build Docker Container on Deep Learning Box_  
+*最終ゴール*  
+Macから公開鍵SSHで
+1. `ssh _ncc1-dl` でNCCのDeep Learning Boxに接続
+1. `ssh ncc1-docker` でDLBのDockerに接続する
 
 ## Mac側の設定(DLB, Dockerに簡単接続)  
 公開鍵、秘密鍵の作成
@@ -7,7 +11,7 @@ Build Docker Container on Deep Learning Box
 ($ mkdir ~/.ssh なければ作る)
 $ cd ~/.ssh
 $ ssh-keygen -t rsa -f key_name -C test@example.com
-e.g.) $ ssh-keygen -t rsa -f my_key -C 1234defgsigeru@gmail.com
+e.g. $ ssh-keygen -t rsa -f my_key -C 1234defgsigeru@gmail.com
 ```
 
 DLBに公開鍵を送る
