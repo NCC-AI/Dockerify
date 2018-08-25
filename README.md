@@ -3,13 +3,13 @@ Build Docker Container on Deep Learning Box
 
 ## Mac側の設定(DLB, Dockerに簡単接続)  
 公開鍵、秘密鍵の作成
-```
+```bash
 $ ssh-keygen -t rsa -f key_name -C test@example.com
 e.g.) $ ssh-keygen -t rsa -f my_key -C 1234defgsigeru@gmail.com
 ```
 
 DLBに公開鍵を送る
-```
+```bash
 $ chmod 600 key_name
 $ scp -P 3030 key_name.pub hiroki@121.2.124.147:~/.ssh/authorized_keys
 $ vim ~/.ssh/config
@@ -44,11 +44,16 @@ sshのpassを登録
 再起動しても消えないように登録  
 `ssh-add -K ~/.ssh/id_rsa`
 
-## Docker環境構築手順
-- [ ] Dockerfileの自分のアカウントのauthorized_keysをセットする
+## Docker環境構築手順(DLB内で作業)
 
-```
+nvidia-dockerをインストールしてない場合は以下
+```bash
 $ sh install-nvidia-docker.sh
+```
+
+- [ ] *Dockerfile*で自分のアカウントのauthorized_keysをセットしてから、
+以下のコマンド実行
+```bash
 $ sh docker_start.sh
 ```
 
@@ -58,9 +63,9 @@ docker から抜ける
 `$ exit`  
 
 docker に入る
-```
+```bash
 $ sudo nvidia-docker exec -it ncc1-docker /bin/bash
 ```
 
-MacからDLB1のDockerに接続  
+## MacからDLB1のDockerに接続  
 `ssh ncc1-docker`
