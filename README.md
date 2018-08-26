@@ -46,9 +46,9 @@ NCCのDLB1(外部接続してる方)に接続
 `ssh _ncc1-dl`
 
 sshのpassを登録  
-`ssh-add ~/.ssh/id_rsa`
+`ssh-add ~/.ssh/my_key`
 再起動しても消えないように登録  
-`ssh-add -K ~/.ssh/id_rsa`
+`ssh-add -K ~/.ssh/my_key`
 
 ## Docker環境構築手順(DLB内で作業)
 
