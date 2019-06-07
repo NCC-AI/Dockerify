@@ -19,7 +19,7 @@ sudo add-apt-repository \
 
 sudo apt-get update
 # 現在のnvidia dockerと互換の中で最新のversionのdockerを入れる
-sudo apt-get install docker-ce=17.03.2~ce-0~ubuntu-xenial
+sudo apt-get install docker-ce
 
 # Nvidia-Docker
 
