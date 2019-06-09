@@ -3,23 +3,12 @@
 # 念のため古いバーションのリムーヴ
 sudo apt-get remove docker docker-engine docker.io
 sudo apt-get update
-# 依存パッケージのインストール
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-# Docker公式のGPG keyを追加
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-# stable repositoryを登録
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
 
-sudo apt-get update
-# 現在のnvidia dockerと互換の中で最新のversionのdockerを入れる
-sudo apt-get install docker-ce
+# install Docker & Docker-Compose
+# sudo addgroup --system docker
+# sudo adduser $USER docker
+# newgrp docker
+sudo snap install docker
 
 # Nvidia-Docker
 
@@ -38,6 +27,8 @@ sudo apt-get update
 # Install nvidia-docker2 and reload the Docker daemon configuration
 sudo apt-get install -y nvidia-docker2
 sudo pkill -SIGHUP dockerd
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 
 # Test nvidia-smi with the latest official CUDA image
 sudo docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
